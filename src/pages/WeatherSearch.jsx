@@ -1,12 +1,27 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function WeatherSearch() {
   const navigate = useNavigate();
   const inputRef = useRef();
   const handleInput = (e) => {
     e.preventDefault();
-    navigate(`/search/${inputRef.current.value}`);
+    if (/^[a-zA-Z][a-zA-Z\s]*$/.test(inputRef.current.value)) {
+      navigate(`/search/${inputRef.current.value}`);
+    } else {
+      toast.warn("Invalid input! Please enter a valid city name.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   };
 
   const getLocation = () => {
@@ -22,6 +37,18 @@ export default function WeatherSearch() {
   };
   return (
     <div className="search-container">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <form onSubmit={handleInput} className="search-wrapper">
         <div className="app-heading">Weather App</div>
         <hr className="top-hr" />
