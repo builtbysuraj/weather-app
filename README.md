@@ -1,4 +1,6 @@
 # Weather App using React.js
+![image](https://user-images.githubusercontent.com/77146598/232045022-5093e7bd-857c-4380-a196-af97609e035e.png)
+
 
 ## How to use it?
 - method 1:  Enter a valid city name, press enter.
