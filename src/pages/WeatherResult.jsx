@@ -41,23 +41,8 @@ export default function WeatherResult() {
     sunny: "/img/sunny-day.png",
     smoke: "/img/smoke.png",
   };
-  const imgSrc = imgMap[description];
-  console.log(imgSrc);
 
-  /*
-  mist
-  rain / light-rain / moderate rain
-  clear sky
-  thunderstorm
-  snow
-  cloudy day / few clouds
-  haze
-  tornado
-  shower rain
-  broken clouds
-  sunny
-  smoke
-  */
+  const imgSrc = imgMap[description];
 
   return (
     <div className="result-container">

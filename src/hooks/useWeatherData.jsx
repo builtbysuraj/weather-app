@@ -6,10 +6,12 @@ export default function useWeatherData(location) {
   const [hasError, setHasError] = useState(false);
   const [hasServerError, setHasServerError] = useState(false);
 
+  // URL for lat & lon
   const latLonUrl = `https://api.openweathermap.org/data/2.5/weather?${location}&units=metric&appid=${
     import.meta.env.VITE_API_KEY
   }`;
 
+  // URL for city
   const cityUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${
     import.meta.env.VITE_API_KEY
   }`;

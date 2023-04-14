@@ -51,6 +51,7 @@ export default function WeatherSearch() {
         pauseOnHover
         theme="light"
       />
+      {/* taking input in a form */}
       <form onSubmit={handleInput} className="search-wrapper">
         <div className="app-heading">Weather App</div>
         <hr className="top-hr" />
