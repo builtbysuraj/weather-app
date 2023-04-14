@@ -158,19 +158,19 @@ body {
 }
 
 .cloud-status {
-  margin: 0px 0px;
   font-size: 20px;
   font-weight: bold;
 }
 
 .location {
   display: flex;
+  justify-self: center;
   align-items: center;
-  gap: 10px;
-  padding: 10px;
+  gap: 8px;
+  padding: 8px;
   font-weight: bold;
-  font-size: 17px;
-  margin-bottom: 5px;
+  font-size: 16px;
+  margin-bottom: 8px;
 }
 
 .bottom {

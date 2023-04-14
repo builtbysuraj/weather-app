@@ -13,17 +13,51 @@ export default function WeatherResult() {
   const { apiData, isLoading, hasError, hasServerError } =
     useWeatherData(location);
 
-  let name, country, temp, feels_like, humidity;
+  let name, country, temp, feels_like, humidity, description;
 
   if (apiData?.weather?.length > 0) {
     ({
       name,
       sys: { country },
       main: { temp, feels_like, humidity },
+      weather: [{ description }],
     } = apiData);
   }
 
-  console.log(name, country, temp, feels_like, humidity);
+  const imgMap = {
+    mist: "/img/mist.png",
+    rain: "/img/rain.png",
+    "moderate rain": "/img/rain.png",
+    "light rain": "/img/rain.png",
+    "shower rain": "/img/shower.png",
+    "clear sky": "/img/clear-sky.png",
+    thunderstorm: "/img/thunderstorm.png",
+    snow: "/img/show.png",
+    "cloudy day": "/img/cloudy-day.png",
+    haze: "/img/haze.png",
+    tornado: "/img/tornado.png",
+    "broken clouds": "/img/broken-cloud.png",
+    "scattered clouds": "/img/broken-cloud.png",
+    sunny: "/img/sunny-day.png",
+    smoke: "/img/smoke.png",
+  };
+  const imgSrc = imgMap[description];
+  console.log(imgSrc);
+
+  /*
+  mist
+  rain / light-rain / moderate rain
+  clear sky
+  thunderstorm
+  snow
+  cloudy day / few clouds
+  haze
+  tornado
+  shower rain
+  broken clouds
+  sunny
+  smoke
+  */
 
   return (
     <div className="result-container">
@@ -49,9 +83,9 @@ export default function WeatherResult() {
             <hr className="top-hr" />
             {/* main section */}
             <div className="main-section">
-              <img src="/img/cloudy.png" width={105} alt="icon" />
+              <img src={imgSrc} width={105} alt="icon" />
               <div className="temprature">{temp}°C</div>
-              <div className="cloud-status">{apiData?.weather[0]?.main}</div>
+              <div className="cloud-status">{description}</div>
               <div className="location">
                 <FontAwesomeIcon icon={faLocationDot} />
                 {name}, {countries[country]?.name}
@@ -60,6 +94,7 @@ export default function WeatherResult() {
             <hr className="top-hr" />
             {/* bottom section */}
             <div className="bottom">
+              {/* bottom-left feels-like section */}
               <div className="bottom-left">
                 <span className="left-wrapper">
                   <img width={31} src="/img/feels-like.png" alt="feels-like" />
@@ -70,6 +105,7 @@ export default function WeatherResult() {
                 </span>
               </div>
               <div className="vl"></div>
+              {/* bottom-right humidity section */}
               <div className="bottom-right">
                 <span className="right-wrapper">
                   <img width={30} src="/img/humidity.png" alt="humidity" />

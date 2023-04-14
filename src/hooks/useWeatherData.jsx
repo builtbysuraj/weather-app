@@ -14,6 +14,7 @@ export default function useWeatherData(location) {
     import.meta.env.VITE_API_KEY
   }`;
 
+  // fetching api data
   const fetchData = async () => {
     try {
       let response;
@@ -22,7 +23,7 @@ export default function useWeatherData(location) {
         : (response = await fetch(cityUrl));
       if (!response.ok) {
         if (response.status >= 500) {
-          setHasServerError(true);
+          setHasServerError((prev) => !prev);
         } else {
           throw new Error(`Response is not OK!`);
         }
@@ -30,9 +31,9 @@ export default function useWeatherData(location) {
       const data = await response.json();
       setApiData(data);
     } catch (error) {
-      setHasError(true);
+      setHasError((prev) => !prev);
     } finally {
-      setIsLoading(false);
+      setIsLoading((prev) => !prev);
     }
   };
 

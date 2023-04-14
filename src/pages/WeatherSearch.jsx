@@ -6,39 +6,41 @@ import "react-toastify/dist/ReactToastify.css";
 export default function WeatherSearch() {
   const navigate = useNavigate();
   const inputRef = useRef();
+
+  // input validation
   const handleInput = (e) => {
     e.preventDefault();
     if (/^[a-zA-Z][a-zA-Z\s]*$/.test(inputRef.current.value)) {
-      navigate(`/search/${inputRef.current.value}`);
+      navigate(`/${inputRef.current.value}`);
     } else {
-      toast.warn("Invalid input! Please enter a valid city name.", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      toast.warn("Invalid input! Please enter a valid city name.");
     }
   };
 
+  // getting location
   const getLocation = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        const lat = pos.coords.latitude;
-        const lon = pos.coords.longitude;
-        navigate(`/search/lat=${lat}&lon=${lon}`);
-      });
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const lat = pos.coords.latitude;
+          const lon = pos.coords.longitude;
+          navigate(`/lat=${lat}&lon=${lon}`);
+        },
+        (err) => {
+          if (err.code === err.PERMISSION_DENIED) {
+            toast.error("Please enable location access for this website.");
+          }
+        }
+      );
     } else {
-      console.log("Geolocation is not supported by this browser.");
+      toast.error("Geolocation is not supported by this browser.");
     }
   };
+
   return (
     <div className="search-container">
       <ToastContainer
-        position="top-right"
+        position="top-center"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}

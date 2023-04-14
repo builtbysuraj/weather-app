@@ -8,7 +8,7 @@ export default function App() {
     <HashRouter>
       <Routes>
         <Route path="/" element={<WeatherSearch />} />
-        <Route path="/search/:location" element={<WeatherResult />} />
+        <Route path="/:location" element={<WeatherResult />} />
       </Routes>
     </HashRouter>
   );
