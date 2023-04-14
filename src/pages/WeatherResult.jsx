@@ -34,6 +34,7 @@ export default function WeatherResult() {
     thunderstorm: "/img/thunderstorm.png",
     snow: "/img/show.png",
     "cloudy day": "/img/cloudy-day.png",
+    "few clouds": "/img/cloudy-day.png",
     haze: "/img/haze.png",
     tornado: "/img/tornado.png",
     "broken clouds": "/img/broken-cloud.png",
