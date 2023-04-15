@@ -39,6 +39,7 @@ export default function WeatherResult() {
     tornado: "/img/tornado.png",
     "broken clouds": "/img/broken-cloud.png",
     "scattered clouds": "/img/broken-cloud.png",
+    "overcast clouds": "/img/broken-cloud.png",
     sunny: "/img/sunny-day.png",
     smoke: "/img/smoke.png",
   };
